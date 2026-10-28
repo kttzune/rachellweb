@@ -632,9 +632,7 @@
     ok.addEventListener("click", () => { modal.remove(); onOk(); });
   }
 
-  $("next2").addEventListener("click", () => {
-    showNote("obviously all your pics is my fav, i just cant fit it here hehe ❤️", "Aww okay →", () => go(3));
-  });
+  $("next2").addEventListener("click", () => go(3));
 
   /* ---- stage 3: favorite pictures ---- */
   const PHOTOS = CONFIG.gallery.length ? CONFIG.gallery : Array.from({ length: 6 }, () => ({ src: "", caption: "" }));
@@ -646,7 +644,9 @@
       : `<div class="ph empty"><svg class="ic" style="width:28px;height:28px" aria-hidden="true"><use href="#heart"/></svg><span>Your photo here</span></div>`) +
     `<figcaption>${p.caption || ""}</figcaption></figure>`
   ).join("");
-  $("next3").addEventListener("click", () => go(4));
+  $("next3").addEventListener("click", () => {
+    showNote("obviously all your pics is my fav, i just cant fit it here hehe ❤️", "Aww okay →", () => go(4));
+  });
   $("next4").addEventListener("click", () => go(5));
 
   /* ---- fav pics of us gallery ---- */
