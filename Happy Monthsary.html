@@ -1,0 +1,729 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Happy Monthsary</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nes.css/2.3.0/css/nes.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap">
+<style>
+  /* Layout: one centered column, one stage at a time (ask, wheel, languages, letter), with soft hearts drifting behind. */
+  :root {
+    --bg: #e2d9ff;
+    --bg2: #cbb4ff;
+    --surface: #ffffff;
+    --ink: #362a4a;
+    --muted: #6e5b8a;
+    --accent: #8b5cf6;
+    --on-accent: #ffffff;
+    --soft: #d8b4fe;
+    --blush: #e9d5ff;
+    --sky: #3f7fbf;
+    --font-display: "Press Start 2P", "VT323", monospace;
+    --font-body: "VT323", monospace;
+    --font-hand: "VT323", monospace;
+    --font-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1d1729;
+      --bg2: #241d35;
+      --surface: #2b233d;
+      --ink: #f3eeff;
+      --muted: #c4b5fd;
+      --accent: #a78bfa;
+      --on-accent: #1e1533;
+      --soft: #3b2f54;
+      --blush: #4a3c68;
+      --sky: #8bb8f2;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1d1729;
+    --bg2: #241d35;
+    --surface: #2b233d;
+    --ink: #f3eeff;
+    --muted: #c4b5fd;
+    --accent: #a78bfa;
+    --on-accent: #1e1533;
+    --soft: #3b2f54;
+    --blush: #4a3c68;
+    --sky: #8bb8f2;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; image-rendering: pixelated; }
+  body {
+    background-color: var(--bg);
+    background-image: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    line-height: 1.55;
+    padding-block: 20px 32px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    min-height: 100%;
+    overflow-x: hidden;
+  }
+
+  .bg-hearts { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+  .bg-hearts .ic { position: absolute; bottom: -40px; fill: var(--blush); opacity: 0.85; animation: drift linear infinite; }
+  @keyframes drift {
+    from { transform: translateY(0) rotate(-10deg); }
+    to { transform: translateY(-112vh) rotate(14deg); }
+  }
+
+  .app { position: relative; z-index: 1; width: 100%; max-width: 480px; margin-inline: auto; display: flex; flex-direction: column; gap: 20px; }
+
+  .stage { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; min-height: 74vh; justify-content: center; animation: rise 0.7s both; }
+  .eyebrow { font-size: 0.9rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin: 0; }
+  h1, h2 { font-family: var(--font-display); font-weight: 400; margin: 0; line-height: 1.3; text-wrap: balance; font-size: 1.3rem; }
+  p { margin: 0; }
+  .sub { color: var(--muted); max-width: 34ch; text-wrap: balance; font-size: 1.1rem; }
+
+  /* Authentic NES.css Button Integration */
+  .btn {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 4px solid var(--ink);
+    border-radius: 0px;
+    min-height: 48px;
+    padding: 8px 24px;
+    background: var(--surface);
+    color: var(--ink);
+    box-shadow: inset -4px -4px 0px 0px #b8a9d9, 4px 4px 0px 0px var(--ink);
+    transition: transform 0.05s, box-shadow 0.05s, background 0.2s;
+  }
+  .btn:hover {
+    background: var(--blush);
+    transform: translate(-1px, -1px);
+    box-shadow: inset -4px -4px 0px 0px #a994d6, 5px 5px 0px 0px var(--ink);
+  }
+  .btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: inset 4px 4px 0px 0px #b8a9d9, 2px 2px 0px 0px var(--ink);
+  }
+  .btn:disabled { opacity: 0.5; cursor: default; transform: none; }
+  .btn.ghost { background: var(--surface); color: var(--accent); border: 4px solid var(--ink); }
+  .btn:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; }
+
+  /* Stage 0 */
+  .choices { display: flex; width: 100%; gap: 16px; align-items: stretch; justify-content: center; }
+  .choices .btn { flex: 1 1 0; min-width: 0; transition: flex-grow 0.35s, font-size 0.35s, transform 0.15s; }
+  #noBtn { white-space: nowrap; }
+  .hint { min-height: 1.6em; color: var(--muted); font-weight: 600; font-size: 1.1rem; }
+  .cat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .cat-say { min-height: 1.5em; font-weight: 600; color: var(--accent); background: var(--surface); padding: 8px 14px; border: 4px solid var(--ink); box-shadow: 4px 4px 0px var(--ink); }
+
+  /* Stage 1 wheel */
+  .wheel-wrap { position: relative; width: min(84vw, 330px); aspect-ratio: 1; margin-block: 6px; }
+  #wheel { width: 100%; height: 100%; display: block; transition: transform 4.8s cubic-bezier(0.15, 0.65, 0.1, 1); filter: drop-shadow(4px 4px 0px rgba(54, 42, 74, 0.3)); }
+  .pointer { position: absolute; left: 50%; top: -14px; width: 30px; margin-left: -15px; z-index: 3; fill: var(--ink); }
+  .s0 { fill: var(--accent); }
+  .s1 { fill: var(--soft); }
+  .p0 { fill: var(--on-accent); }
+  .p1 { fill: var(--ink); }
+  .q { font-family: var(--font-display); font-size: 24px; }
+
+  .fly-plane {
+    position: fixed; left: 0; top: 0; width: 44px; height: 44px; z-index: 40; pointer-events: none; will-change: transform;
+    font-family: var(--font-emoji); font-size: 38px; line-height: 44px; text-align: center;
+    filter: drop-shadow(0 4px 5px rgba(54, 42, 74,0.3));
+  }
+  .piece { position: fixed; left: 0; top: 0; z-index: 30; pointer-events: none; will-change: transform; }
+  .piece svg { display: block; overflow: visible; filter: drop-shadow(4px 4px 0px rgba(54, 42, 74,0.25)); }
+  .fade { opacity: 0; transition: opacity 0.6s; }
+
+  .stamp {
+    position: absolute; left: 50%; top: 50%; z-index: 5; width: 94%; font-family: var(--font-display); font-size: 1rem;
+    color: var(--surface); background: var(--ink); padding: 14px; border: 4px solid var(--accent); line-height: 1.4; text-align: center; text-wrap: balance;
+    box-shadow: 6px 6px 0px var(--accent);
+    transform: translate(-50%, -50%) rotate(-4deg); animation: stamp 0.45s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+  }
+  @keyframes stamp { from { transform: translate(-50%, -50%) rotate(-4deg) scale(2.6); opacity: 0; } to { transform: translate(-50%, -50%) rotate(-4deg) scale(1); opacity: 1; } }
+  .flash { position: absolute; left: 50%; top: 50%; width: 60px; height: 60px; margin: -30px 0 0 -30px; border-radius: 50%; background: var(--accent); opacity: 0; z-index: 2; animation: flash 0.7s ease-out; }
+  @keyframes flash { 0% { transform: scale(0.3); opacity: 0.95; } 100% { transform: scale(5); opacity: 0; } }
+  .smoke { position: absolute; left: 50%; top: 50%; width: 28px; height: 28px; margin: -14px 0 0 -14px; border-radius: 50%; background: var(--ink); opacity: 0; z-index: 3; animation: smoke 2.4s ease-out infinite; }
+  @keyframes smoke { 0% { transform: translate(0, 0) scale(0.5); opacity: 0.35; } 100% { transform: translate(var(--dx, 0px), -110px) scale(2.4); opacity: 0; } }
+
+  /* Stage 2 languages */
+  .langs { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; width: 100%; }
+  .langs li {
+    background: var(--surface); border: 4px solid var(--ink); border-radius: 0px; padding: 14px 18px;
+    display: grid; gap: 4px; box-shadow: 6px 6px 0px var(--ink);
+    animation: rise 0.7s both; animation-delay: calc(var(--i) * 0.55s);
+  }
+  .langs .lang { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .langs .phrase { font-family: var(--font-display); font-size: 1.2rem; line-height: 1.3; color: var(--accent); overflow-wrap: anywhere; }
+  .langs .say { font-size: 1rem; color: var(--muted); }
+
+  /* Stage 3 letter */
+  .paper {
+    width: 100%; text-align: left; background-color: var(--surface); border: 4px solid var(--ink); border-radius: 0px; padding: 26px 22px 24px;
+    background-image: repeating-linear-gradient(to bottom, transparent 0 35px, var(--blush) 35px 36px);
+    box-shadow: 6px 6px 0px var(--ink); transform: rotate(-0.5deg); animation: rise 0.9s both;
+    font-family: var(--font-hand); font-size: 1.35rem; line-height: 36px; color: var(--ink);
+  }
+  .paper p { margin: 0 0 36px; }
+  .paper p:last-of-type { margin-bottom: 0; }
+  .paper .sign { margin-top: 36px; color: var(--accent); font-weight: 600; }
+  .env { display: inline-flex; align-items: center; gap: 10px; }
+  .env svg { width: 24px; height: 24px; fill: currentColor; }
+  .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+
+  .ic { width: 1em; height: 1em; fill: currentColor; }
+
+  /* Stage 3 pictures */
+  .gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 14px; width: 100%; }
+  .polaroid { margin: 0; min-width: 0; background: var(--surface); border: 4px solid var(--ink); padding: 8px 8px 10px; border-radius: 0px; box-shadow: 6px 6px 0px var(--ink); rotate: var(--tilt, 0deg); animation: rise 0.7s both; animation-delay: calc(var(--i) * 0.15s); }
+  .polaroid .ph { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--soft); border-radius: 0px; }
+  .polaroid .empty { display: grid; place-content: center; justify-items: center; gap: 6px; color: var(--accent); font-weight: 700; font-size: 0.9rem; text-align: center; }
+  .polaroid figcaption { margin-top: 8px; min-height: 1.2em; font-family: var(--font-hand); font-size: 1.2rem; line-height: 1.15; color: var(--ink); overflow-wrap: anywhere; }
+  #favPics { grid-template-columns: minmax(0, 260px); justify-content: center; }
+  .pop { position: fixed; z-index: 5; pointer-events: none; fill: var(--accent); }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    .bg-hearts { display: none; }
+  }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="heart" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></symbol>
+  <symbol id="mail" viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4.4 7H4v.5l8 5.3 8-5.3V7h-.4L12 12.2z"/></symbol>
+</svg>
+
+<div class="bg-hearts" id="bgHearts" aria-hidden="true"></div>
+
+<main class="app">
+  <!-- 0: the question -->
+  <section class="stage" id="st0">
+    <p class="eyebrow">Happy Monthsary, <span data-her>my love</span></p>
+    <h1>Can I ask you something?</h1>
+    <div class="cat" id="cat" hidden aria-live="polite">
+      <span class="cat-say" id="catSay"></span>
+    </div>
+    <div class="choices" id="choices">
+      <button class="btn" id="yesBtn" type="button">Yes</button>
+      <button class="btn ghost" id="noBtn" type="button">No</button>
+    </div>
+    <p class="hint" id="hint" aria-live="polite"></p>
+  </section>
+
+  <!-- 1: the wheel -->
+  <section class="stage" id="st1" hidden>
+    <p class="eyebrow">Good answer</p>
+    <h2>Things I don't like about you</h2>
+    <p class="sub" id="wheelSub">Spin the wheel and see what comes up.</p>
+    <div class="wheel-wrap" id="wheelWrap">
+      <svg class="pointer" viewBox="0 0 30 34" aria-hidden="true"><path d="M2 2h26L15 32z"/></svg>
+      <svg id="wheel" viewBox="-102 -102 204 204" role="img" aria-label="A wheel of things I don't like about you"></svg>
+      <div class="stamp" id="stamp" hidden>There is nothing I don't like about you duhh</div>
+    </div>
+    <button class="btn" id="spinBtn" type="button">Spin</button>
+    <button class="btn" id="next1" type="button" hidden>Okay, continue</button>
+  </section>
+
+  <!-- 2: I love you -->
+  <section class="stage" id="st2" hidden>
+    <p class="eyebrow">So instead</p>
+    <h2>I love you</h2>
+    <ul class="langs" id="langs"></ul>
+    <button class="btn" id="next2" type="button" hidden>One more thing</button>
+  </section>
+
+  <!-- 3: favorite pictures -->
+  <section class="stage" id="stGallery" hidden>
+    <p class="eyebrow">Look at you</p>
+    <h2>My favorite pictures of you</h2>
+    <div class="gallery" id="gallery"></div>
+    <button class="btn" id="next3" type="button">One last thing</button>
+  </section>
+
+  <!-- 4: fav pics of us -->
+  <section class="stage" id="stFavPics" hidden>
+    <p class="eyebrow">For <span data-her>my love</span></p>
+    <h2>My favorite pictures of us</h2>
+    <div class="gallery" id="favPics"></div>
+    <button class="btn" id="next4" type="button">Aww beautiful</button>
+  </section>
+
+  <!-- 4: the letter -->
+  <section class="stage" id="st3" hidden>
+    <p class="eyebrow">For <span data-her>my love</span></p>
+    <h2 id="letterHead">A letter for you</h2>
+    <button class="btn env" id="openLetter" type="button"><svg aria-hidden="true"><use href="#mail"/></svg>Open my letter</button>
+    <article class="paper" id="paper" hidden></article>
+    <div class="actions" id="end" hidden>
+      <button class="btn ghost" id="replay" type="button">Replay from the start</button>
+    </div>
+  </section>
+</main>
+
+<span class="fly-plane" id="flyPlane" hidden aria-hidden="true">✈️</span>
+
+<script>
+  /* ===== Edit these to make it yours ===== */
+  const CONFIG = {
+    her: "my lovee Rachell",
+    greeting: "Helooo my loveee",
+    letter: [
+      "Happy monthsary! Another month with you, and it still feels like the first one every day. You make me fall more and more in love with you every single day we talk, hehe.",
+      "I made this page because I wanted to make you smile. I put some effort into it, so I hope you laugh, cry, jump so high that you launch yourself into space, or feel any other emotion. HAHAHAHA! Every emotion is valid lovee. I just want to tell you that I really, really love you. I just don't know how to show it 100%, you know what I mean lovee",
+      "Thank you for being patient with me, for laughing at my silly jokes, and for choosing me every single day. There will always be ups and downs, but even our imperfections make me fall more in love with you. I know I won't always get everything right, but I promise to keep trying, to keep growing, and to keep choosing you in this lifetime.",
+      "I love you from a mile away and back, my loveee. Happy monthsary! Thank you for being you and for being mine. No matter how many months pass, I hope you know that my love for you will keep growing every single day."
+    ],
+    signoff: "Always yours,<br>Keith",
+    gallery: [
+      { src: "assets/image1.jpg", caption: "My favorite smile" },
+      { src: "assets/image2.jpg", caption: "So gorgeous" },
+      { src: "assets/image3.jpg", caption: "My happy place" },
+      { src: "assets/image4.jpg", caption: "Forever & always" }
+    ]
+  };
+  const LANGS = [
+    { lang: "English", phrase: "I love you", say: "" },
+    { lang: "Malay", phrase: "Sayang cinta", say: "" },
+    { lang: "Filipino", phrase: "Mahal kita", say: "" },
+    { lang: "Bisaya", phrase: "Gihigugma tika", say: "" },
+    { lang: "Mandarin", phrase: "我爱你", say: "wǒ ài nǐ" }
+  ];
+  /* ======================================= */
+
+  const $ = (id) => document.getElementById(id);
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const stages = [$("st0"), $("st1"), $("st2"), $("stGallery"), $("stFavPics"), $("st3")];
+
+  document.querySelectorAll("[data-her]").forEach((el) => (el.textContent = CONFIG.her));
+
+  /* floating background hearts */
+  (function () {
+    const box = $("bgHearts");
+    for (let i = 0; i < 12; i++) {
+      const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      s.setAttribute("class", "ic");
+      s.innerHTML = '<use href="#heart"/>';
+      const size = 14 + Math.random() * 26;
+      s.style.width = s.style.height = size + "px";
+      s.style.left = Math.random() * 96 + "%";
+      s.style.animationDuration = 16 + Math.random() * 18 + "s";
+      s.style.animationDelay = -Math.random() * 30 + "s";
+      box.appendChild(s);
+    }
+  })();
+
+  let timer2 = null;
+  function go(n) {
+    stages.forEach((s, i) => (s.hidden = i !== n));
+    window.scrollTo(0, 0);
+    clearTimeout(timer2);
+    if (n === 2) {
+      $("next2").hidden = true;
+      timer2 = setTimeout(() => ($("next2").hidden = false), reduce ? 0 : 3300);
+    }
+  }
+
+  /* ---- stage 0: forced yes ---- */
+  let noCount = 0;
+  const hints = [
+    "",
+    "Oops, wrong button! You meant Yes right?",
+    "Wait, your finger slipped again... right?",
+    "That button is shrinking because it knows it shouldn't be clicked!",
+    "Okay, final warning before I call your bluff.",
+    "Alright, the 'No' button has officially retired."
+  ];
+  const catLines = [
+    "you missed press the yes right?",
+    "how about now?"
+  ];
+
+  const noLabels = ["No", "Are you sure?", "Please?", "Think again", "Last chance", ""];
+  $("noBtn").addEventListener("click", () => {
+    noCount = Math.min(noCount + 1, 2); // Only allow 2 "No" clicks as requested
+    const yes = $("yesBtn"), no = $("noBtn");
+    // Update button text
+    no.textContent = noLabels[noCount] || "No";
+    // Update hint text (not catSay - "dont put the text in the box")
+    $("hint").textContent = catLines[noCount - 1];
+    // Animate the No button - POP like a balloon on 2nd click
+    if (noCount === 2) {
+      const btnRect = no.getBoundingClientRect();
+      const cx = btnRect.left + btnRect.width / 2;
+      const cy = btnRect.top + btnRect.height / 2;
+
+      // Create balloon pop particles
+      for (let i = 0; i < 16; i++) {
+        const p = document.createElement("div");
+        p.className = "piece";
+        const size = 8 + Math.random() * 12;
+        p.style.width = p.style.height = size + "px";
+        p.style.backgroundColor = i % 2 === 0 ? "var(--accent)" : "var(--surface)";
+        p.style.border = "2px solid var(--ink)";
+        p.style.boxShadow = "2px 2px 0px var(--ink)";
+        document.body.appendChild(p);
+
+        const angle = (i / 16) * Math.PI * 2;
+        const speed = 120 + Math.random() * 180;
+        const vx = Math.cos(angle) * speed;
+        const vy = Math.sin(angle) * speed - 60; // initial upward pop
+
+        let x = cx, y = cy, vely = vy, velx = vx;
+        let last = performance.now();
+        const t0 = last;
+
+        const popFrame = (now) => {
+          const dt = Math.min((now - last) / 1000, 0.033);
+          last = now;
+          vely += 1200 * dt; // gravity
+          x += velx * dt;
+          y += vely * dt;
+          p.style.transform = `translate(${x - size/2}px, ${y - size/2}px) rotate(${now * 0.5}deg)`;
+
+          if (now - t0 < 800) {
+            requestAnimationFrame(popFrame);
+          } else {
+            p.style.opacity = "0";
+            setTimeout(() => p.remove(), 300);
+          }
+        };
+        requestAnimationFrame(popFrame);
+      }
+
+      // Hide original button instantly
+      no.hidden = true;
+      yes.textContent = "Fine, yes";
+
+      // Update hint text
+      $("hint").textContent = catLines[1]; // "how about now?"
+    } else {
+      // 1st click: just update hint text
+      $("hint").textContent = catLines[0]; // "you missed press the yes right?"
+    }
+    if (noCount >= 2) {
+      // No need to disable - already hidden after explosion
+    }
+  });
+  $("yesBtn").addEventListener("click", () => {
+    const modal = document.createElement("div");
+    modal.style.cssText = "position:fixed; inset:0; background:rgba(54,42,74,0.7); z-index:100; display:grid; place-content:center; padding:20px; animation: rise 0.3s both;";
+    modal.innerHTML = `
+      <div style="background:var(--surface); border:4px solid var(--ink); padding:24px; text-align:center; box-shadow:8px 8px 0px var(--ink); max-width:340px; display:flex; flex-direction:column; gap:16px; align-items:center;">
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW5lenZyZHI5OXM2eW95b3pmMG40cWVrMDhtNjVuM3A4dGNxa2g2dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/VM1fcpu2bKs1e2Kdbj/giphy.gif" alt="Cute Cat" style="width:180px; height:180px; object-fit:cover; border:3px solid var(--ink); box-shadow:4px 4px 0px var(--ink);">
+        <p style="font-family:var(--font-display); font-size:1.1rem; color:var(--accent); line-height:1.4;">Awhh i never doubt you once my lovee ❤️</p>
+        <button class="btn" id="modalOk" type="button" style="width:100%;">Let's go &rarr;</button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    modal.querySelector("#modalOk").addEventListener("click", () => {
+      modal.remove();
+      go(1);
+    });
+  });
+
+  /* ---- stage 1: wheel, emoji plane, ragdoll ---- */
+  const WN = 8, WR = 96;
+  const wpt = (a, r) => { const t = (a * Math.PI) / 180; return [r * Math.cos(t), r * Math.sin(t)]; };
+  const wgeom = (i) => {
+    const a0 = -90 - 180 / WN + (i * 360) / WN;
+    const a1 = a0 + 360 / WN;
+    return { a0, a1, mid: (a0 + a1) / 2 };
+  };
+  const f2 = (n) => n.toFixed(2);
+
+  (function buildWheel() {
+    let out = "";
+    for (let i = 0; i < WN; i++) {
+      const { a0, a1, mid } = wgeom(i);
+      const [x0, y0] = wpt(a0, WR), [x1, y1] = wpt(a1, WR), [px, py] = wpt(mid, 64);
+      out += `<path class="s${i % 2}" d="M0 0 L${f2(x0)} ${f2(y0)} A${WR} ${WR} 0 0 1 ${f2(x1)} ${f2(y1)} Z" stroke="var(--surface)" stroke-width="1.5"/>`;
+      out += `<text class="q p${i % 2}" x="${f2(px)}" y="${f2(py)}" text-anchor="middle" dominant-baseline="central">?</text>`;
+    }
+    out += `<circle r="98" fill="none" stroke="var(--ink)" stroke-width="3"/>`;
+    for (let i = 0; i < 16; i++) {
+      const [bx, by] = wpt((i * 360) / 16, 98);
+      out += `<circle cx="${f2(bx)}" cy="${f2(by)}" r="2.4" fill="var(--surface)"/>`;
+    }
+    out += `<circle r="14" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/>`;
+    out += `<use href="#heart" width="16" height="16" x="-8" y="-8" fill="var(--accent)"/>`;
+    $("wheel").innerHTML = out;
+  })();
+
+  const wrap = $("wheelWrap"), wheel = $("wheel"), fly = $("flyPlane");
+  let spun = false, landed = false, wheelRot = 0;
+
+  function afterCrash() {
+    $("next1").hidden = false;
+  }
+
+  function buildPieces(cx, cy, W, R, dir) {
+    const sc = W / 204;
+    const list = [];
+    const add = (inner, cxu, cyu, radius, kick) => {
+      const el = document.createElement("div");
+      el.className = "piece";
+      el.style.width = el.style.height = W + "px";
+      el.innerHTML = `<svg viewBox="-102 -102 204 204" width="${W}" height="${W}"><g transform="rotate(${f2(R)})">${inner}</g></svg>`;
+      const ox = W / 2 + cxu * sc, oy = W / 2 + cyu * sc;
+      el.style.transformOrigin = `${ox}px ${oy}px`;
+      document.body.appendChild(el);
+      const len = Math.hypot(cxu, cyu) || 1;
+      list.push({
+        el, ox, oy, r: radius, a: 0,
+        x: cx + cxu * sc, y: cy + cyu * sc,
+        vx: dir * (260 + Math.random() * 260) + (cxu / len) * kick * (0.6 + Math.random() * 0.8),
+        vy: -160 - Math.random() * 280 + (cyu / len) * kick * (0.4 + Math.random() * 0.6),
+        w: (Math.random() - 0.5) * 14,
+        tf: (b) => `translate(${b.x - b.ox}px,${b.y - b.oy}px) rotate(${b.a}rad)`
+      });
+    };
+    for (let i = 0; i < WN; i++) {
+      const { a0, a1, mid } = wgeom(i);
+      const [x0, y0] = wpt(a0, WR), [x1, y1] = wpt(a1, WR), [px, py] = wpt(mid, 64);
+      const [rx0, ry0] = wpt(a0, 98), [rx1, ry1] = wpt(a1, 98);
+      const [b0x, b0y] = wpt(a0, 98), [b1x, b1y] = wpt(mid, 98);
+      const inner =
+        `<path class="s${i % 2}" d="M0 0 L${f2(x0)} ${f2(y0)} A${WR} ${WR} 0 0 1 ${f2(x1)} ${f2(y1)} Z" stroke="var(--surface)" stroke-width="1.5"/>` +
+        `<text class="q p${i % 2}" x="${f2(px)}" y="${f2(py)}" text-anchor="middle" dominant-baseline="central" transform="rotate(${f2(mid + 90)} ${f2(px)} ${f2(py)})">?</text>` +
+        `<path d="M${f2(rx0)} ${f2(ry0)} A98 98 0 0 1 ${f2(rx1)} ${f2(ry1)}" fill="none" stroke="var(--ink)" stroke-width="3"/>` +
+        `<circle cx="${f2(b0x)}" cy="${f2(b0y)}" r="2.4" fill="var(--surface)"/><circle cx="${f2(b1x)}" cy="${f2(b1y)}" r="2.4" fill="var(--surface)"/>`;
+      const [cxu, cyu] = wpt(mid + R, 62);
+      add(inner, cxu, cyu, W * 0.2, 260);
+    }
+    add(`<circle r="14" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/><use href="#heart" width="16" height="16" x="-8" y="-8" fill="var(--accent)"/>`, 0, 0, W * 0.07, 120);
+    return list;
+  }
+
+  function runPhysics(list) {
+    const g = 2000, rest = 0.5;
+    let last = performance.now();
+    const t0 = last;
+    const frame = (now) => {
+      const dt = Math.min((now - last) / 1000, 0.033);
+      last = now;
+      const Wn = window.innerWidth, Hn = window.innerHeight;
+      for (const b of list) {
+        b.vy += g * dt;
+        b.x += b.vx * dt;
+        b.y += b.vy * dt;
+        b.a += b.w * dt;
+        const floor = Hn - b.r;
+        if (b.y > floor) {
+          b.y = floor;
+          b.vy = Math.abs(b.vy) > 80 ? -b.vy * rest : 0;
+          b.vx *= Math.pow(0.05, dt * 3);
+          b.w *= Math.pow(0.1, dt * 2);
+        }
+        if (b.x < b.r) { b.x = b.r; b.vx = -b.vx * rest; }
+        if (b.x > Wn - b.r) { b.x = Wn - b.r; b.vx = -b.vx * rest; }
+        b.el.style.transform = b.tf(b);
+      }
+      if (now - t0 < 3300) {
+        requestAnimationFrame(frame);
+      } else {
+        list.forEach((b) => b.el.classList.add("fade"));
+        setTimeout(() => {
+          list.forEach((b) => {
+            if (b.keep) { b.el.hidden = true; b.el.classList.remove("fade"); b.el.style.transform = ""; }
+            else b.el.remove();
+          });
+          afterCrash();
+        }, 650);
+      }
+    };
+    requestAnimationFrame(frame);
+  }
+
+  function impact(dir, cx, cy, W) {
+    fly.getAnimations().forEach((a) => a.cancel());
+    const flash = document.createElement("div");
+    flash.className = "flash";
+    wrap.appendChild(flash);
+    [-18, 0, 20].forEach((dx, i) => {
+      const s = document.createElement("div");
+      s.className = "smoke";
+      s.style.setProperty("--dx", dx + "px");
+      s.style.animationDelay = i * 0.7 + "s";
+      wrap.appendChild(s);
+    });
+    $("stamp").hidden = false;
+    wheel.style.visibility = "hidden";
+    if (reduce) {
+      fly.hidden = true;
+      afterCrash();
+      return;
+    }
+    const list = buildPieces(cx, cy, W, wheelRot, dir);
+    const rot = dir === 1 ? 91 : -91;
+    list.push({
+      el: fly, keep: true, x: cx, y: cy, a: 0, r: 20,
+      vx: dir * 140, vy: 40, w: dir * 5,
+      tf: (b) => `translate(${b.x - 22}px,${b.y - 22}px) rotate(${b.a}rad) rotate(${rot}deg) scaleX(${dir})`
+    });
+    runPhysics(list);
+  }
+
+  function startFly() {
+    const r = wrap.getBoundingClientRect();
+    const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    const dir = Math.random() < 0.5 ? 1 : -1;
+    if (reduce) { impact(dir, cx, cy, r.width); return; }
+    const Wn = window.innerWidth;
+    const x0 = dir === 1 ? -70 : Wn + 70;
+    const y0 = Math.max(cy - 170, 40);
+    const tf = (x, y, th) => {
+      const rot = dir === 1 ? th + 45 : -45 - th;
+      return `translate(${x - 22}px,${y - 22}px) rotate(${rot}deg) scaleX(${dir})`;
+    };
+    const mx = x0 + (cx - x0) * 0.6, my = y0 + (cy - y0) * 0.3;
+    fly.hidden = false;
+    const a = fly.animate(
+      [
+        { transform: tf(x0, y0, 16), offset: 0 },
+        { transform: tf(mx, my, 26), offset: 0.6 },
+        { transform: tf(cx, cy, 46), offset: 1 }
+      ],
+      { duration: 1900, easing: "cubic-bezier(0.3, 0, 0.8, 0.7)", fill: "forwards" }
+    );
+    a.onfinish = () => impact(dir, cx, cy, r.width);
+  }
+
+  function onLanded() {
+    if (landed) return;
+    landed = true;
+    $("wheelSub").textContent = "Wait, what's that sound?";
+    setTimeout(startFly, reduce ? 0 : 900);
+  }
+  $("spinBtn").addEventListener("click", () => {
+    if (spun) return;
+    spun = true;
+    $("spinBtn").hidden = true;
+    const turn = 360 * 5 + Math.floor(Math.random() * 360);
+    wheelRot = turn % 360;
+    wheel.addEventListener("transitionend", onLanded, { once: true });
+    setTimeout(onLanded, reduce ? 60 : 5400);
+    requestAnimationFrame(() => (wheel.style.transform = `rotate(${turn}deg)`));
+  });
+  $("next1").addEventListener("click", () => go(2));
+
+  /* ---- stage 2: languages ---- */
+  $("langs").innerHTML = LANGS.map((l, i) =>
+    `<li style="--i:${i}"><span class="lang">${l.lang}</span><span class="phrase" lang="${l.lang === "Mandarin" ? "zh" : ""}">${l.phrase}</span>${l.say ? `<span class="say">${l.say}</span>` : ""}</li>`
+  ).join("");
+  /* pop-up note box (same style as the "never doubt you" one) */
+  function showNote(text, btnLabel, onOk) {
+    const modal = document.createElement("div");
+    modal.style.cssText = "position:fixed; inset:0; background:rgba(54,42,74,0.7); z-index:100; display:grid; place-content:center; padding:20px; animation: rise 0.3s both;";
+    modal.innerHTML = `
+      <div style="background:var(--surface); border:4px solid var(--ink); padding:24px; text-align:center; box-shadow:8px 8px 0px var(--ink); max-width:340px; display:flex; flex-direction:column; gap:16px; align-items:center;">
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW5lenZyZHI5OXM2eW95b3pmMG40cWVrMDhtNjVuM3A4dGNxa2g2dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/VM1fcpu2bKs1e2Kdbj/giphy.gif" alt="Cute Cat" style="width:180px; height:180px; object-fit:cover; border:3px solid var(--ink); box-shadow:4px 4px 0px var(--ink);">
+        <p style="font-family:var(--font-display); font-size:1.1rem; color:var(--accent); line-height:1.4;"></p>
+        <button class="btn" type="button" style="width:100%;"></button>
+      </div>
+    `;
+    modal.querySelector("p").textContent = text;
+    const ok = modal.querySelector("button");
+    ok.textContent = btnLabel;
+    document.body.appendChild(modal);
+    ok.addEventListener("click", () => { modal.remove(); onOk(); });
+  }
+
+  $("next2").addEventListener("click", () => {
+    showNote("obviously all your pics is my fav, i just cant fit it here hehe ❤️", "Aww okay →", () => go(3));
+  });
+
+  /* ---- stage 3: favorite pictures ---- */
+  const PHOTOS = CONFIG.gallery.length ? CONFIG.gallery : Array.from({ length: 6 }, () => ({ src: "", caption: "" }));
+  const tilts = [-2, 1.5, 1, -1.5, 2, -1];
+  $("gallery").innerHTML = PHOTOS.map((p, i) =>
+    `<figure class="polaroid" style="--i:${i};--tilt:${tilts[i % tilts.length]}deg">` +
+    (p.src
+      ? `<img class="ph" src="${p.src}" alt="${p.caption || "A photo of you"}">`
+      : `<div class="ph empty"><svg class="ic" style="width:28px;height:28px" aria-hidden="true"><use href="#heart"/></svg><span>Your photo here</span></div>`) +
+    `<figcaption>${p.caption || ""}</figcaption></figure>`
+  ).join("");
+  $("next3").addEventListener("click", () => go(4));
+  $("next4").addEventListener("click", () => go(5));
+
+  /* ---- fav pics of us gallery ---- */
+  const favPhotos = [
+    { src: "assets/fav.jpg", caption: "Us together" }
+  ];
+  const favTilts = [0];
+  $("favPics").innerHTML = favPhotos.map((p, i) =>
+    `<figure class="polaroid" style="--i:${i};--tilt:${favTilts[i % favTilts.length]}deg">` +
+    (p.src
+      ? `<img class="ph" src="${p.src}" alt="${p.caption || "A photo of you"}">`
+      : `<div class="ph empty"><svg class="ic" style="width:28px;height:28px" aria-hidden="true"><use href="#heart"/></svg><span>Your photo here</span></div>`) +
+    `<figcaption>${p.caption || ""}</figcaption></figure>`
+  ).join("");
+  /* ---- stage 3: letter ---- */
+  $("paper").innerHTML =
+    `<p>${CONFIG.greeting}</p>` +
+    CONFIG.letter.map((t) => `<p>${t}</p>`).join("") +
+    `<p class="sign">${CONFIG.signoff}</p>`;
+
+  function pops() {
+    if (reduce) return;
+    for (let i = 0; i < 28; i++) {
+      const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      s.setAttribute("class", "pop");
+      s.innerHTML = '<use href="#heart"/>';
+      const size = 14 + Math.random() * 22;
+      s.style.width = s.style.height = size + "px";
+      s.style.left = 6 + Math.random() * 88 + "%";
+      s.style.bottom = "-30px";
+      document.body.appendChild(s);
+      const rise = 55 + Math.random() * 60;
+      const drift = (Math.random() - 0.5) * 120;
+      s.animate(
+        [
+          { transform: "translate(0,0) rotate(0deg)", opacity: 1 },
+          { transform: `translate(${drift}px,-${rise}vh) rotate(${(Math.random() - 0.5) * 90}deg)`, opacity: 0 }
+        ],
+        { duration: 2200 + Math.random() * 1800, delay: Math.random() * 500, easing: "ease-out", fill: "forwards" }
+      ).onfinish = () => s.remove();
+    }
+  }
+  $("openLetter").addEventListener("click", () => {
+    $("openLetter").hidden = true;
+    $("letterHead").textContent = "Happy Monthsary";
+    $("paper").hidden = false;
+    $("end").hidden = false;
+    pops();
+    $("paper").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  });
+
+  /* ---- replay ---- */
+  $("replay").addEventListener("click", () => {
+    noCount = 0; spun = false; landed = false;
+    const yes = $("yesBtn"), no = $("noBtn");
+    yes.style.flexGrow = ""; yes.style.fontSize = ""; yes.textContent = "Yes";
+    no.style.fontSize = ""; no.textContent = "No"; no.hidden = false;
+    $("hint").textContent = "";
+    document.querySelectorAll(".piece").forEach((n) => n.remove());
+    wheel.style.visibility = "";
+    wheel.style.transition = "none";
+    wheel.style.transform = "rotate(0deg)";
+    void wheel.getBoundingClientRect();
+    wheel.style.transition = "";
+    fly.getAnimations().forEach((a) => a.cancel());
+    fly.hidden = true; fly.classList.remove("fade"); fly.style.transform = "";
+    wrap.querySelectorAll(".flash, .smoke").forEach((n) => n.remove());
+    $("stamp").hidden = true;
+    $("next1").hidden = true;
+    $("cat").hidden = true; $("catSay").textContent = "";
+    $("spinBtn").hidden = false;
+    $("wheelSub").textContent = "Spin the wheel and see what comes up.";
+    $("paper").hidden = true; $("end").hidden = true;
+    $("openLetter").hidden = false;
+    $("letterHead").textContent = "A letter for you";
+    go(0);
+  });
+</script>
+
+</body></html>
